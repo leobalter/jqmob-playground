@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu site com jQuery Mobile!</title>
+  <link rel="stylesheet"
+      href="http://code.jquery.com/mobile/latest/jquery.mobile.css">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://code.jquery.com/mobile/latest/jquery.mobile.js">
+      </script>
+  <script>
+  $(function() {
+    $(document).delegate('div', 'pageinit', function() {
+      console.log('pageinit');
+      console.dir($.mobile);
+    });
+
+    $('div[data-role=page]').live('swipe', function(event) {
+      console.log(arguments);
+    })
+
+    $(window).bind('orientationchange', function(event) {
+      console.log(event.orientation);
+    });
+  });  
+  </script>
+</head>
+<body>
+    <div data-role="page" id="page1">
+        <div data-role="header">
+          <h1 data-role="title">Meu tema default</h1>
+        </div>
+        <div data-role="collapsible-set">
+
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Parte 1</h3>
+                <p>Olá Mundo!.</p>
+            </div>
+
+            <div data-role="collapsible">
+                <h3>Parte 2</h3>
+                <p>Olá de novo!</p>
+            </div>
+
+        </div> 
+        
+        <a data-role="button" href="#page2">Próxima página</a>
+    </div>
+
+     <div data-role="page" id="page2" data-theme="a">
+        <div data-role="content">
+       
+            <div data-role="collapsible-set">
+                <div data-role="collapsible" data-collapsed="false">
+                    <h3>Parte 1</h3>
+                    <p>Olá Mundo!.</p>
+                </div>
+
+                <div data-role="collapsible">
+                    <h3>Parte 2</h3>
+                    <p>Olá de novo!</p>
+                </div>
+            </div>        
+            <a data-role="button" href="pop.html" data-rel="dialog">Abre pop</a>
+            <a data-role="button" href="#page3">Próxima página</a>
+        </div>
+
+        
+    </div>
+
+     <div data-role="page" id="page3" data-theme="b">
+        <div data-role="collapsible-set">
+
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Parte 1</h3>
+                <p>Olá Mundo!.</p>
+            </div>
+
+            <div data-role="collapsible">
+                <h3>Parte 2</h3>
+                <p>Olá de novo!</p>
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a data-role="button" href="#page1" data-transition="fade">Abre pop</a>
+                    <a data-role="button" href="#page4" data-transition="fade">Próxima página</a>
+                </div>
+                
+            </div>
+
+        </div>    
+        
+            
+    </div>
+
+     <div data-role="page" id="page4" data-theme="c">
+        <div data-role="collapsible-set">
+
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Parte 1</h3>
+                <p>Olá Mundo!.</p>
+            </div>
+
+            <div data-role="collapsible">
+                <h3>Parte 2</h3>
+                <p>Olá de novo!</p>
+            </div>
+
+            <div data-role="controlgroup">
+                <a data-role="button" href="pop.html">Abre pop</a>
+                <a data-role="button" href="#page1" data-transition="pop">Primeira página</a>
+            </div>
+
+        </div>        
+    </div>
+
+</body>
+</html>
