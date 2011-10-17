@@ -7,76 +7,54 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.css">
     <link rel="stylesheet" href="css/vdpr.css">
     <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script>
+    $(document).bind("mobileinit", function() {
+        $.extend($.mobile, {
+            autoInitializePage: false,
+            loadingMessage: 'Carregando...'
+        });
+    });
+    </script>
     <script src="http://code.jquery.com/mobile/latest/jquery.mobile.js"></script>
-   
+    <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+    <script src="js/vdpr.js"></script>
 </head>
 <body>
-<div data-role="page" id="vdpr1">
-    <div data-role="header">
-        <h1 data-role="title">Vida de Programador #1</h1>
-    </div>
-    <div data-role="content">
-        <img class="tirinha" src="http://vidadeprogramador.com.br/wp-content/uploads/2011/03/tirinha1.png">
-    </div>
-    <div data-role="footer">
-        <div data-role="navbar">
-            <ul>
-                <li>
-                    <a href="http://vdpr.us/1" target="_blank" data-role="button">http://vdpr.us/1</a>
-                </li>
-                <li>
-                    <a data-role="button" href="#vdpr2">Próximo</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 
-<div data-role="page" id="vdpr2">
-    <div data-role="header">
-        <h1 data-role="title">Vida de Programador #2</h1>
-    </div>
-    <div data-role="content">
-        <img class="tirinha" src="http://vidadeprogramador.com.br/wp-content/uploads/2011/03/tirinha2.png">
-    </div>
-    <div data-role="footer">
-        <div data-role="navbar">
-            <ul>
-                <li>
-                    <a data-role="button" href="#vdpr1">Anterior</a>
-                </li>
-                <li>
-                    <a href="http://vdpr.us/2" target="_blank" data-role="button">http://vdpr.us/2</a>
-                </li>
-                <li>
-                    <a data-role="button" href="#vdpr3">Próximo</a>
-                </li>
-            </ul>
+<script id="pageTemplate" type="text/template">
+<% _.each(paginas, function(pagina) { %>
+    <div data-role="page" id="<%= pagina.id %>">
+        <div data-role="header">
+            <h1 data-role="title"><%= pagina.titulo %> | Vida de Programador</h1>
         </div>
-    </div>
-</div>
+        <div data-role="content">
+            <img class="tirinha" src="<%= pagina.src %>" />
+        </div>
+        <div data-role="footer">
+            <div data-role="navbar">
+                <ul>
+                    <% if (pagina.anterior) { %>
+                    <li>
+                        <a data-role="button" href="<%= pagina.anterior %>">Anterior</a>
+                    </li>
+                    <% } %>
 
-<div data-role="page" id="vdpr3">
-    <div data-role="header">
-        <h1 data-role="title">Vida de Programador #3</h1>
-    </div>
-    <div data-role="content">
-        <img class="tirinha" src="http://vidadeprogramador.com.br/wp-content/uploads/2011/03/tirinha3.png">
-    </div>
-    <div data-role="footer">
-        <div data-role="navbar">
-            <ul>
-                <li>
-                    <a data-role="button" href="#vdpr2">Anterior</a>
-                </li>
-                <li>
-                    <a href="http://vdpr.us/3" target="_blank" data-role="button">http://vdpr.us/3</a>
-                </li>
-                
-            </ul>
+                    <li>
+                        <a href="<%= pagina.link %>" target="_blank" data-role="button"><%= pagina.link %></a>
+                    </li>
+
+                    <% if (pagina.proxima) { %>
+                    <li>
+                        <a data-role="button" href="<%= pagina.proxima %>">Próxima</a>
+                    </li>
+                    <% } %>
+
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+<% }); %>
+</script>
 
 
 </body>
